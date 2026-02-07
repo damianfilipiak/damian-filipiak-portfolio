@@ -143,7 +143,11 @@ function App() {
           </section>
         </div>
 
-        <footer className="footer">© 2026 // <span className="highlight-white">[ DRAG_TO_ROTATE ]</span> // LOC: WAŁBRZYCH_PL</footer>
+        <footer className="footer">© 2026 // 
+  <span className="highlight-white desktop-text"> [ DRAG_TO_ROTATE ] </span>
+  <span className="highlight-white mobile-text"> [ AUTO_ROTATE ] </span> 
+  // LOC: WAŁBRZYCH_PL
+</footer>
       </div>
     </div>
   );
