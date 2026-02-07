@@ -5,6 +5,7 @@ import grimAudio from './grim.mp3';
 import './App.css';
 
 function Model() {
+  // THIS IS MY MODEL FROM SKI SLOPE (1:1 OUTFIT)
   const { scene } = useGLTF('/snowboard.glb'); 
   const [width, setWidth] = useState(window.innerWidth);
 
