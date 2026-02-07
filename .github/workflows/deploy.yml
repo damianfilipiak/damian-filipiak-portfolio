@@ -23,7 +23,9 @@ jobs:
           npm run build
 
       - name: Upload to Azure Storage
-        uses: azure/CLI@v1
+        uses: azure/storage-deploy@v1
         with:
-          inlineScript: |
-            az storage blob upload-batch --account-name dfcvcv --auth-mode key --connection-string "${{ secrets.AZUR }}" --source ./dist --destination '$web' --overwrite true
+          connection-string: ${{ secrets.AZURE }}
+          remote-shell-timeout: 600
+          blob-container-name: '$web'
+          source-path: './dist'

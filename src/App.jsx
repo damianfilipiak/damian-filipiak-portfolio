@@ -132,7 +132,7 @@ function App() {
             <div className="contact-links">
               <a href="https://github.com/damianfilipiak" target="_blank" rel="noreferrer">GITHUB</a>
               <a href="https://www.linkedin.com/in/damian-filipiak-556690246/" target="_blank" rel="noreferrer">LINKEDIN</a>
-              <a href="mailto:damian.filipiak02@gmail.com" target="_blank" rel="noreferrer">DAMIAN.FILIPIAK02@GMAIL.COM</a>
+              {/* <a href="mailto:damian.filipiak02@gmail.com" target="_blank" rel="noreferrer">DAMIAN.FILIPIAK02@GMAIL.COM</a> */}
             </div>
   
             <form action="https://formspree.io/f/xeelqkrz" method="POST" className="mail-form">
