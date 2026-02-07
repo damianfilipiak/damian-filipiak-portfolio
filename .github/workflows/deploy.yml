@@ -19,11 +19,11 @@ jobs:
 
       - name: Install dependencies and build
         run: |
-          npm install
+          npm install --legacy-peer-deps
           npm run build
 
       - name: Upload to Azure Storage
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az storage blob upload-batch --account-name dfcvcv --auth-mode key --connection-string "${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}" --source ./dist --destination '$web' --overwrite true
+            az storage blob upload-batch --account-name dfcvcv --auth-mode key --connection-string "${{ secrets.AZUR }}" --source ./dist --destination '$web' --overwrite true
