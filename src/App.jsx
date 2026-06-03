@@ -126,9 +126,9 @@ function App() {
               <div className="term-body">
                 <br/>
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> SYSTEM_PROMPT // USER_BIO`}</p>
-                <p>{`> Junior IT Specialist with hands-on experience in maintaining local production and office infrastructure. On a daily basis I ensure the reliable operation of server systems and LAN/VLAN networks.`}</p>
-                <p className="cyan">{`> Currently pursuing a Bachelor's degree with plans to advance to a Master's program. My primary target paths are Network Engineering, Cybersecurity, and DevOps.`}</p>
-                <p className="magenta">{`> As a side quest, I highly enjoy engineering creative web experiences like the one you are currently browsing.`}</p>
+                <p>{`> JUNIOR IT SPECIALIST WITH HANDS-ON EXPERIENCE IN MAINTAINING LOCAL PRODUCTION AND OFFICE INFRASTRUCTURE. ON A DAILY BASIS I ENSURE THE RELIABLE OPERATION OF SERVER SYSTEMS AND LAN/VLAN NETWORKS.`}</p>
+                <p className="cyan">{`> CURRENTLY PURSUING A BACHELOR'S DEGREE WITH PLANS TO ADVANCE TO A MASTER'S PROGRAM. MY PRIMARY TARGET PATHS ARE NETWORK ENGINEERING, CYBERSECURITY, AND DEVOPS.`}</p>
+                <p className="magenta">{`> AS A SIDE QUEST, I HIGHLY ENJOY ENGINEERING CREATIVE WEB EXPERIENCES LIKE THE ONE YOU ARE CURRENTLY BROWSING.`}</p>
                 <br />
 
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> USER_SCHOOL // EDUCATION`}</p>
