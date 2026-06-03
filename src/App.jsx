@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Stage, Float } from '@react-three/drei';
-import grimAudio from './grim.mp3';
+import grimAudio from './grim.mp3'; // "The Outcome" by Pixabay (https://pixabay.com/music/electronic-the-outcome-free-rap-beat-462680/)
 import './App.css';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -47,7 +47,7 @@ function App() {
   const [cvLang, setCvLang] = useState('EN'); 
   const [width, setWidth] = useState(window.innerWidth);
   
-  const audioRef = useRef(new Audio(grimAudio));
+  const audioRef = useRef(new Audio(grimAudio)); 
 
   useEffect(() => {
     const audio = audioRef.current;
