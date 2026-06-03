@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Stage, Float } from '@react-three/drei';
 import grimAudio from './grim.mp3';
 import './App.css';
+import { Analytics } from '@vercel/analytics/react';
 
 function Model() {
   const { scene } = useGLTF('/snowboard.glb'); 
@@ -220,6 +221,10 @@ function App() {
           // LOC: WAŁBRZYCH_PL
         </footer>
       </div>
+      
+      {/* VERCEL ANALYTICS COMPONENT */}
+      <Analytics />
+      
     </div>
   );
 }
