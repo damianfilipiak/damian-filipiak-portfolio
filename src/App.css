@@ -18,7 +18,6 @@ body {
   overflow: hidden;
 }
 
-/* TŁO I EFEKTY */
 .glitch-bg { 
   position: fixed; inset: 0; 
   background-image: url('https://media.giphy.com/media/oEI9uWUicKgRTfA6uF/giphy.gif'); 
@@ -92,10 +91,38 @@ body {
   text-transform: uppercase; 
 }
 
-/* FORMULARZ KONTAKTOWY */
 .contact-area { width: 320px; }
-.contact-links { display: flex; gap: 20px; margin-bottom: 15px; }
-.contact-links a { color: #fff; text-decoration: none; font-size: 11px; border-bottom: 1px solid #333; }
+.contact-links { 
+  display: flex; 
+  align-items: baseline;
+  gap: 20px; 
+  margin-bottom: 15px; 
+}
+
+.contact-links a,
+.cv-link-btn { 
+  color: #fff; 
+  text-decoration: none; 
+  font-size: 11px; 
+  border-bottom: 1px solid #333; 
+  background: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 0 0 2px 0;
+  font-family: inherit;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  line-height: 1;
+  font-variant-ligatures: none;
+}
+
+.contact-links a:hover,
+.cv-link-btn:hover {
+  color: #00f7ff;
+  border-bottom-color: #00f7ff;
+}
 
 .mail-form { 
   background: rgba(5, 5, 5, 0.95); border: 1px solid #222; 
@@ -115,14 +142,13 @@ body {
   transition: 0.3s ease;
 }
 
-/* ELASTYCZNY TEXTAREA */
 .mail-form textarea { 
   min-height: 50px; 
-  resize: vertical; /* Pozwala rekruterowi na manualne rozciąganie */
+  resize: vertical; 
 }
 
 .mail-form textarea:focus { 
-  min-height: 150px; /* Puchnie przy pisaniu */
+  min-height: 150px; 
   border-bottom-color: #00f7ff; 
 }
 
@@ -149,16 +175,102 @@ body {
 /* TERMINAL POPUP */
 .terminal-overlay { 
   position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); 
-  z-index: 150; width: 85%; max-width: 450px; 
+  z-index: 150; width: 85%; max-width: 550px; 
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
 }
-.bio-terminal { background: rgba(0, 0, 0, 0.95); border: 1px solid #00f7ff; padding: 20px; }
-.term-body { font-size: 12px; line-height: 1.6; text-align: left; }
+
+/* POPUP PDF CV */
+.terminal-overlay.cv-overlay {
+  max-width: 800px;
+  height: 85vh;
+  width: 90%;
+}
+
+.terminal-overlay.cv-overlay .bio-terminal {
+  height: 100%;
+}
+
+.bio-terminal { 
+  background: rgba(0, 0, 0, 0.95); border: 1px solid #00f7ff; padding: 20px; 
+  display: flex; flex-direction: column;
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.term-body { 
+  font-size: 12px; line-height: 1.6; text-align: left; 
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.term-body::-webkit-scrollbar { width: 6px; }
+.term-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.5); border: 1px solid #333; }
+.term-body::-webkit-scrollbar-thumb { background: #00f7ff; }
+.term-body::-webkit-scrollbar-thumb:hover { background: #ff00f7; }
 .cyan { color: #00f7ff; }
 .magenta { color: #ff00f7; }
 .blink { animation: blink 1s infinite; }
+
 @keyframes blink { 50% { opacity: 0; } }
 
-/* --- RESPONSYWNOŚĆ --- */
+.cv-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 10px;
+}
+
+.cv-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cv-controls button,
+.cv-controls .dl-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  line-height: 1;
+}
+
+.cv-controls button:hover,
+.cv-controls .dl-btn:hover {
+  color: #ff00f7; 
+}
+
+.cv-controls button.active {
+  color: #00f7ff; 
+  text-shadow: 0 0 8px rgba(0, 247, 255, 0.6);
+}
+
+.pdf-wrapper {
+  flex-grow: 1;
+  padding: 0;
+  overflow: hidden;
+  -webkit-overflow-scrolling: touch; /* iOS scroll */
+}
+
+.pdf-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: #fff;
+}
 
 .mobile-text { display: none; }
 
@@ -170,6 +282,37 @@ body {
   .description { margin: 0 auto; }
   .contact-area { width: 100%; max-width: 350px; }
   .canvas-container { height: 75vh; }
+  
+  .terminal-overlay.cv-overlay {
+    height: 75vh;
+    width: 95%;
+  }
+}
+
+@media (max-width: 800px) {
+  .terminal-overlay.cv-overlay {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    top: 0;
+    left: 0;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .bio-terminal.cv-container {
+    border: none;
+    padding: 10px;
+    border-bottom: 1px solid #00f7ff;
+  }
+  .cv-head {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .cv-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 @media (max-width: 500px) {

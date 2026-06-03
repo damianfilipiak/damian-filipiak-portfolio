@@ -1,11 +1,10 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, Suspense, useRef } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Stage, Float } from '@react-three/drei';
 import grimAudio from './grim.mp3';
 import './App.css';
 
 function Model() {
-  // THIS IS MY MODEL FROM SKI SLOPE (1:1 OUTFIT)
   const { scene } = useGLTF('/snowboard.glb'); 
   const [width, setWidth] = useState(window.innerWidth);
 
@@ -43,10 +42,14 @@ function Model() {
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
-  const [audio] = useState(new Audio(grimAudio));
+  const [showCV, setShowCV] = useState(false);
+  const [cvLang, setCvLang] = useState('EN'); 
   const [width, setWidth] = useState(window.innerWidth);
+  
+  const audioRef = useRef(new Audio(grimAudio));
 
   useEffect(() => {
+    const audio = audioRef.current;
     audio.loop = true;
     audio.volume = 0.4;
     const handleResize = () => setWidth(window.innerWidth);
@@ -55,15 +58,29 @@ function App() {
       audio.pause();
       window.removeEventListener('resize', handleResize);
     };
-  }, [audio]);
+  }, []);
 
   const toggleAudio = () => {
+    const audio = audioRef.current;
     if (isPlaying) audio.pause();
     else audio.play().catch(e => console.log("Audio Error:", e));
     setIsPlaying(!isPlaying);
   };
 
   const isMobile = width < 800;
+
+  const currentPdfUrl = cvLang === 'EN' 
+    ? "/Damian_Filipiak_Junior_Spec_IT_CV_EN.pdf" 
+    : "/Damian Filipiak - Mlodszy Spec IT.pdf";
+
+  const handlePrint = () => {
+    const printWindow = window.open(currentPdfUrl, '_blank');
+    if (printWindow) {
+      printWindow.onload = () => {
+        printWindow.print();
+      };
+    }
+  };
 
   return (
     <div className="awge-v3-container">
@@ -74,7 +91,7 @@ function App() {
         <header className="header">
           <div className="brand">CORE_v1.0 // DAMIAN_FILIPIAK</div>
           <div className="nav-group">
-            <button onClick={() => setShowAbout(!showAbout)} className={showAbout ? 'active' : ''}>
+            <button onClick={() => {setShowAbout(!showAbout); setShowCV(false);}} className={showAbout ? 'active' : ''}>
               {showAbout ? '[ CLOSE ]' : '[ TECH_SPEC ]'}
             </button>
             <button className={`audio-btn ${isPlaying ? 'playing' : ''}`} onClick={toggleAudio}>
@@ -90,7 +107,7 @@ function App() {
             <Suspense fallback={null}>
               <Stage environment="city" intensity={0.8} contactShadow={false}>
                 <Model />
-              </Stage>-
+              </Stage>
               <OrbitControls 
                 enableZoom={false} 
                 enableRotate={!isMobile} 
@@ -101,27 +118,77 @@ function App() {
           </Canvas>
         </div>
 
+        {/* TECH SPEC POPUP */}
         {showAbout && (
           <div className="terminal-overlay">
             <div className="bio-terminal">
-              <div className="term-head">INTERNAL_LOGS // DAMIAN_FILIPIAK</div>
+              <div className="term-head">INTERNAL_LOGS // DAMIAN_FILIPIAK // 22.04.2002</div>
               <div className="term-body">
-                <p className="cyan">> BACHELOR OF ENGINEERING IN COMPUTER SCIENCE - CYBERSECURITY AND COMPUTER NETWORKS - WROCŁAWSKA AKADEMIA BIZNESU (2022 - PRESENT) </p>
-                <p>> JUNIOR IT SPECIALIST - FORVIA POLAND, WALBRZYCH (03.2025 - PRESENT)</p>
-                <p className="magenta">> JUNIOR PROCESS ENGINEER (06.2023 - 03.2025)</p>
+                <br/>
+                <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> SYSTEM_PROMPT // USER_BIO`}</p>
+                <p>{`> Junior IT Specialist with hands-on experience in maintaining local production and office infrastructure. On a daily basis I ensure the reliable operation of server systems and LAN/VLAN networks.`}</p>
+                <p className="cyan">{`> Currently pursuing a Bachelor's degree with plans to advance to a Master's program. My primary target paths are Network Engineering, Cybersecurity, and DevOps.`}</p>
+                <p className="magenta">{`> As a side quest, I highly enjoy engineering creative web experiences like the one you are currently browsing.`}</p>
+                <br />
+
+                <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> USER_SCHOOL // EDUCATION`}</p>
+                <p className="cyan">{`> BACHELOR OF ENGINEERING IN COMPUTER SCIENCE - CYBERSECURITY AND COMPUTER NETWORKS - WROCŁAWSKA AKADEMIA BIZNESU (2022 - PRESENT)`}</p>
+                <p className="cyan">{`> ZESPÓŁ SZKÓŁ POLITECHNICZNYCH "ENERGETYK" WAŁBRZYCH (2018 - 2022) - IT TECHNICIAN`}</p>
+                <br/>
+                
+                <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> WORK // WORK_EXPERIENCE`}</p>
+                <p>{`> JUNIOR IT SPECIALIST - FORVIA POLAND, WALBRZYCH (03.2025 - PRESENT)`}</p>
+                <p className="magenta">{`> JUNIOR PROCESS ENGINEER (06.2023 - 03.2025)`}</p>
                 
                 <br />
-                <p style={{color: '#fff', fontWeight: 'bold'}}>>> CORE_PASSIONS // INTERESTS_MODULE</p>
-                <p className="cyan">> MUSIC</p>
-                <p className="magenta">> WEB_ENGINEERING</p>
-                <p className="cyan">> SNOWBOARDING</p>
-                <p className="magenta">> FOOTBALL, COMPUTER_GAMES</p>
+                <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> CURRENT_OPERATIONS // JUNIOR_IT_SPEC`}</p>
+                <p className="cyan">{`> INFRA_MANAGEMENT:`} <span style={{color: '#ccc'}}>{`FRONT/BACK-OFFICE L1/L2 SUPPORT`}</span></p>
+                <p className="magenta">{`> MONITORING:`} <span style={{color: '#ccc'}}>{`HYDRA, GRAFANA (CRIT/DOWN ALERTS, KPI)`}</span></p>
+                <p className="cyan">{`> VIRTUAL_ENV:`} <span style={{color: '#ccc'}}>{`VMWARE VSPHERE, LENOVO XCLARITY, HA/FAILOVER`}</span></p>
+                <p className="magenta">{`> NETWORK_ADMIN:`} <span style={{color: '#ccc'}}>{`LAN/VLAN, CISCO IE -> SIEMENS SCALANCE, NAT`}</span></p>
+                <p className="cyan">{`> IAM & BACKUP:`} <span style={{color: '#ccc'}}>{`ACTIVE DIRECTORY, SAP MII, COMMVAULT, TAPE LIBRARIES`}</span></p>
+
+                <br />
+                <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> TECH_STACK // SKILLS_MODULE`}</p>
+                <p className="cyan">{`> NETWORKING:`} <span style={{color: '#fff'}}>{`CISCO, SIEMENS SCALANCE, VLAN/NAT, PFSENSE`}</span></p>
+                <p className="magenta">{`> SYSTEMS:`} <span style={{color: '#fff'}}>{`WINDOWS SERVER, AD, SAP MII, VMWARE, XCLARITY`}</span></p>
+                <p className="cyan">{`> TOOLS:`} <span style={{color: '#fff'}}>{`GRAFANA, HYDRA, COMMVAULT, HTML/CSS/JS/REACT`}</span></p>
+
+                <br />
+                <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> CORE_PASSIONS // INTERESTS_MODULE`}</p>
+                <p className="magenta">{`> MUSIC, WEB_ENGINEERING, SNOWBOARDING, ESPORTS & FOOTBALL`}</p>
                 
                 <p className="blink">_</p>
               </div>
             </div>
           </div>
-        )}    
+        )}
+
+        {/* CV PDF POPUP */}
+        {showCV && (
+          <div className="terminal-overlay cv-overlay">
+            <div className="bio-terminal cv-container">
+              <div className="term-head cv-head">
+                <span>// CURRICULUM_VITAE</span>
+                <div className="cv-controls">
+                  <button className={cvLang === 'EN' ? 'active' : ''} onClick={() => setCvLang('EN')}>[ EN ]</button>
+                  <button className={cvLang === 'PL' ? 'active' : ''} onClick={() => setCvLang('PL')}>[ PL ]</button>
+                  <button onClick={handlePrint}>[ PRINT ]</button>
+                  <a href={currentPdfUrl} download className="dl-btn">[ DOWNLOAD ]</a>
+                  <button onClick={() => setShowCV(false)}>[ CLOSE ]</button>
+                </div>
+              </div>
+
+              <div className="term-body pdf-wrapper">
+                <iframe 
+                  src={`${currentPdfUrl}#view=FitH`} 
+                  title="Damian Filipiak CV"
+                  className="pdf-iframe"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         <div className="main-content">
           <section className="hero-info">
@@ -133,11 +200,13 @@ function App() {
             <div className="contact-links">
               <a href="https://github.com/damianfilipiak" target="_blank" rel="noreferrer">GITHUB</a>
               <a href="https://www.linkedin.com/in/damian-filipiak-556690246/" target="_blank" rel="noreferrer">LINKEDIN</a>
-              {/* <a href="mailto:damian.filipiak02@gmail.com" target="_blank" rel="noreferrer">DAMIAN.FILIPIAK02@GMAIL.COM</a> */}
+              <button className="cv-link-btn" onClick={() => {setShowCV(true); setShowAbout(false);}}>
+                C<span>V</span>
+              </button>
             </div>
   
             <form action="https://formspree.io/f/xeelqkrz" method="POST" className="mail-form">
-            <input type="text" name="_gotcha" style={{ display: 'none' }} />
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
               <input type="email" name="email" placeholder="YOUR_EMAIL" required />
               <textarea name="message" placeholder="MESSAGE_CONTENT" required></textarea>
               <button type="submit">SEND_TRANSMISSION_></button>
@@ -146,10 +215,10 @@ function App() {
         </div>
 
         <footer className="footer">© 2026 // 
-  <span className="highlight-white desktop-text"> [ DRAG_TO_ROTATE ] </span>
-  <span className="highlight-white mobile-text"> [ AUTO_ROTATE ] </span> 
-  // LOC: WAŁBRZYCH_PL
-</footer>
+          <span className="highlight-white desktop-text"> [ DRAG_TO_ROTATE ] </span>
+          <span className="highlight-white mobile-text"> [ AUTO_ROTATE ] </span> 
+          // LOC: WAŁBRZYCH_PL
+        </footer>
       </div>
     </div>
   );
