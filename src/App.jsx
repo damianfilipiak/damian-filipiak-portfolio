@@ -90,7 +90,7 @@ function App() {
       
       <div className="ui-frame">
         <header className="header">
-          <div className="brand">CORE_v1.0 // DAMIAN_FILIPIAK</div>
+          <div className="brand">CORE_v1.5 // DAMIAN_FILIPIAK</div>
           <div className="nav-group">
             <button onClick={() => {setShowAbout(!showAbout); setShowCV(false);}} className={showAbout ? 'active' : ''}>
               {showAbout ? '[ CLOSE ]' : '[ TECH_SPEC ]'}
