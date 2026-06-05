@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, Stage, Float } from '@react-three/drei';
 import grimAudio from './grim.mp3'; // "The Outcome" by Pixabay (https://pixabay.com/music/electronic-the-outcome-free-rap-beat-462680/)
 import './App.css';
+import Terminal from './Terminal';
 import { Analytics } from '@vercel/analytics/react';
 
 function Model() {
@@ -40,12 +41,69 @@ function Model() {
   );
 }
 
+function Snowfall({ onDone }) {
+  const canvasRef = useRef(null);
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const flakes = Array.from({ length: 500 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 3 + 1,
+      speed: Math.random() * 1.5 + 0.5,
+      drift: Math.random() * 0.8 - 0.4,
+      opacity: Math.random() * 0.6 + 0.4,
+    }));
+
+    const interval = setInterval(() => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      flakes.forEach(f => {
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200, 240, 255, ${f.opacity})`;
+        ctx.fill();
+        f.y += f.speed;
+        f.x += f.drift;
+        if (f.y > canvas.height) {
+          f.y = -10;
+          f.x = Math.random() * canvas.width;
+        }
+      });
+    }, 30);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      onDone();
+    }, 150000);
+
+    return () => { clearInterval(interval); clearTimeout(timeout); };
+  }, [onDone]);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      style={{
+        position: 'fixed', inset: 0,
+        zIndex: 999, pointerEvents: 'none',
+        width: '100vw', height: '100vh',
+      }}
+    />
+  );
+}
+
 function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showTerminal, setShowTerminal] = useState(false);
   const [showCV, setShowCV] = useState(false);
   const [cvLang, setCvLang] = useState('EN'); 
   const [width, setWidth] = useState(window.innerWidth);
+  const [showSnow, setShowSnow] = useState(false);
   
   const audioRef = useRef(new Audio(grimAudio)); 
 
@@ -83,6 +141,8 @@ function App() {
     }
   };
 
+
+
   return (
     <div className="awge-v3-container">
       <div className="glitch-bg"></div>
@@ -90,8 +150,17 @@ function App() {
       
       <div className="ui-frame">
         <header className="header">
-          <div className="brand">CORE_v2.0 // DAMIAN_FILIPIAK</div>
+          <div
+            className="brand"
+              onClick={() => setShowSnow(true)}
+              style={{ cursor: 'crosshair' }}
+            >
+            CORE_v2.0 // DAMIAN_FILIPIAK
+          </div>
           <div className="nav-group">
+            <button onClick={() => setShowTerminal(!showTerminal)} className={showTerminal ? 'active' : ''}>
+              [ CONSOLE ]
+            </button>
             <button onClick={() => {setShowAbout(!showAbout); setShowCV(false);}} className={showAbout ? 'active' : ''}>
               {showAbout ? '[ CLOSE ]' : '[ TECH_SPEC ]'}
             </button>
@@ -119,6 +188,12 @@ function App() {
           </Canvas>
         </div>
 
+        {showTerminal && (
+        <Terminal
+          onClose={() => setShowTerminal(false)}
+          onOpenCV={() => { setShowCV(true); setShowTerminal(false); }}
+          />
+        )}
         {/* TECH SPEC POPUP */}
         {showAbout && (
           <div className="terminal-overlay">
@@ -224,7 +299,7 @@ function App() {
       
       {/* VERCEL ANALYTICS COMPONENT */}
       <Analytics />
-      
+      {showSnow && <Snowfall onDone={() => setShowSnow(false)} />}
     </div>
   );
 }
