@@ -210,7 +210,7 @@ function App() {
               <input type="text" name="_gotcha" style={{ display: 'none' }} />
               <input type="email" name="email" placeholder="YOUR_EMAIL" required />
               <textarea name="message" placeholder="MESSAGE_CONTENT" required></textarea>
-              <button type="submit">SEND_TRANSMISSION_></button>
+              <button type="submit">SEND_TRANSMISSION_&gt;</button>
             </form>
           </section>
         </div>
