@@ -106,9 +106,10 @@ body {
   font-size: 11px; 
   border-bottom: 1px solid #333; 
   background: transparent;
-  border-top: none;
-  border-left: none;
-  border-right: none;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
   padding: 0 0 2px 0;
   font-family: inherit;
   cursor: pointer;

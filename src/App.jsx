@@ -143,10 +143,10 @@ function App() {
                 
                 <br />
                 <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> CURRENT_OPERATIONS // JUNIOR_IT_SPEC`}</p>
-                <p className="cyan">{`> INFRA_MANAGEMENT:`} <span style={{color: '#ccc'}}>{`FRONT/BACK-OFFICE L1/L2 SUPPORT`}</span></p>
+                <p className="cyan">{`> INFRA_MANAGEMENT:`} <span style={{color: '#ccc'}}>{`FRONT/BACK-OFFICE SUPPORT`}</span></p>
                 <p className="magenta">{`> MONITORING:`} <span style={{color: '#ccc'}}>{`HYDRA, GRAFANA (CRIT/DOWN ALERTS, KPI)`}</span></p>
                 <p className="cyan">{`> VIRTUAL_ENV:`} <span style={{color: '#ccc'}}>{`VMWARE VSPHERE, LENOVO XCLARITY, HA/FAILOVER`}</span></p>
-                <p className="magenta">{`> NETWORK_ADMIN:`} <span style={{color: '#ccc'}}>{`LAN/VLAN, CISCO IE -> SIEMENS SCALANCE, NAT`}</span></p>
+                <p className="magenta">{`> NETWORK_ADMIN:`} <span style={{color: '#ccc'}}>{`LAN/VLAN, CISCO IE -> SIEMENS SCALANCE, NAT, KEPWARE`}</span></p>
                 <p className="cyan">{`> IAM & BACKUP:`} <span style={{color: '#ccc'}}>{`ACTIVE DIRECTORY, SAP MII, COMMVAULT, TAPE LIBRARIES`}</span></p>
 
                 <br />
@@ -202,7 +202,7 @@ function App() {
               <a href="https://github.com/damianfilipiak" target="_blank" rel="noreferrer">GITHUB</a>
               <a href="https://www.linkedin.com/in/damian-filipiak-556690246/" target="_blank" rel="noreferrer">LINKEDIN</a>
               <button className="cv-link-btn" onClick={() => {setShowCV(true); setShowAbout(false);}}>
-                C<span>V</span>
+                CV
               </button>
             </div>
   
