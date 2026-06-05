@@ -52,7 +52,7 @@ function App() {
   useEffect(() => {
     const audio = audioRef.current;
     audio.loop = true;
-    audio.volume = 0.4;
+    audio.volume = 0.1;
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
     return () => {
