@@ -1,16 +1,34 @@
-# React + Vite
+# Cloud-Native Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the repository of my interactive portfolio! This project serves not only as a showcase of my experience as a Junior IT Specialist but, more importantly, as a practical demonstration of my skills in **DevOps, containerization, and cloud infrastructure**.
 
-Currently, two official plugins are available:
+## Architecture & Technologies
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The project was designed according to Cloud-Native best practices, moving away from automated hosting platforms (like Vercel) in favor of full infrastructure control:
 
-## React Compiler
+* **Frontend:** React + Vite
+* **Containerization:** Docker (multi-stage build minimizing image size)
+* **Web Server:** Nginx (Alpine version)
+* **Infrastructure (IaC):** Terraform + AWS (Work in progress)
+* **CI/CD:** GitHub Actions (Work in progress)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## How to run the project locally?
 
-## Expanding the ESLint configuration
+**1. Build the image (Multi-stage build):**
+```bash
+docker build -t damianfilipiak_portfolio .
+```
+**2. Run the container in the background (port 8080):**
+```bash
+docker run -d -p 8080:80 --name damian-portfolio damianfilipiak_portfolio
+```
+The application will be available at: http://localhost:8080
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**Option B: Download image from Docker Hub
+```bash
+docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfolio:latest
+```
+
+# 👨‍💻 About the Author
+Damian Filipiak
+IT Engineer with hands-on experience in maintaining local production infrastructure, LAN/VLAN networks, and virtualization systems. Currently expanding my expertise towards Cloud Native and DevOps architecture.
