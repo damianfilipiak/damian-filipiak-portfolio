@@ -1,4 +1,4 @@
-# 🚀 Cloud-Native Personal Portfolio
+# 🚀 Personal Portfolio
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/xxxblacksanta/portfolio)](https://hub.docker.com/r/xxxblacksanta/portfolio)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
