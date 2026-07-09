@@ -9,11 +9,11 @@ Welcome to the repository of my interactive portfolio! Beyond the live site, thi
 
 ## Architecture & Technologies
 
-**Frontend**: React + Vite
-**Containerization**: Docker (multi-stage build minimizing image size)
-**Web Server**: Nginx (Alpine version)
-**Infrastructure (IaC)**: Terraform + AWS (Work in progress)
-**CI/CD**: GitHub Actions (Work in progress)
+* **Frontend**: React + Vite
+* **Containerization**: Docker (multi-stage build minimizing image size)
+* **Web Server**: Nginx (Alpine version)
+* **Infrastructure (IaC)**: Terraform + AWS (Work in progress)
+* **CI/CD**: GitHub Actions (Work in progress)
 
 ## How to run the project locally
 
@@ -24,7 +24,7 @@ docker run -d -p 8080:80 --name damian-portfolio damianfilipiak_portfolio
 ```
 ### Option B: Download image from Docker Hub
 ```bash
-docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfolio:latest
+docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfoslio:latest
 ```
 The application will be available at: http://localhost:8080
 
