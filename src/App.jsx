@@ -129,8 +129,8 @@ function App() {
   const isMobile = width < 800;
 
   const currentPdfUrl = cvLang === 'EN' 
-    ? "/Damian_Filipiak_Junior_Spec_IT_CV_EN.pdf" 
-    : "/Damian Filipiak - Mlodszy Spec IT.pdf";
+    ? "/IT_Eng_Damian_Filipiak.pdf" 
+    : "/Inz_IT_Damian_Filipiak.pdf";
 
   const handlePrint = () => {
     const printWindow = window.open(currentPdfUrl, '_blank');
@@ -202,14 +202,13 @@ function App() {
               <div className="term-body">
                 <br/>
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> SYSTEM_PROMPT // USER_BIO`}</p>
-                <p>{`> JUNIOR IT SPECIALIST WITH HANDS-ON EXPERIENCE IN MAINTAINING LOCAL PRODUCTION AND OFFICE INFRASTRUCTURE. ON A DAILY BASIS I ENSURE THE RELIABLE OPERATION OF SERVER SYSTEMS AND LAN/VLAN NETWORKS.`}</p>
-                <p className="cyan">{`> CURRENTLY PURSUING A BACHELOR'S DEGREE WITH PLANS TO ADVANCE TO A MASTER'S PROGRAM. MY PRIMARY TARGET PATHS ARE NETWORK ENGINEERING, CYBERSECURITY, AND DEVOPS.`}</p>
-                <p className="magenta">{`> AS A SIDE QUEST, I HIGHLY ENJOY ENGINEERING CREATIVE WEB EXPERIENCES LIKE THE ONE YOU ARE CURRENTLY BROWSING.`}</p>
+                <p>{`> IT ENGINEER WITH HANDS-ON EXPERIENCE IN MAINTAINING LOCAL PRODUCTION AND OFFICE INFRASTRUCTURE. DAILY RESPONSIBILITIES INCLUDE ENSURING THE STABILITY AND RELIABILITY OF SERVER SYSTEMS AND LAN/VLAN NETWORKS. PRIMARY CAREER OBJECTIVE: NETWORK OR DEVOPS ENGINEER.`}</p>
+                <p className="cyan">{`> GRADUATE SPECIALIZING IN NETWORK ENGINEERING AND CYBERSECURITY. ACTIVELY PURSUING FURTHER ACADEMIC GROWTH.`}</p>
+                <p className="magenta">{`> SIDE QUEST: ENGINEERING CREATIVE WEB EXPERIENCES LIKE THE INTERFACE YOU ARE CURRENTLY BROWSING.`}</p>
                 <br />
 
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> USER_SCHOOL // EDUCATION`}</p>
-                <p className="cyan">{`> BACHELOR OF ENGINEERING IN COMPUTER SCIENCE - CYBERSECURITY AND COMPUTER NETWORKS - WROCŁAWSKA AKADEMIA BIZNESU (2022 - PRESENT)`}</p>
-                <p className="cyan">{`> ZESPÓŁ SZKÓŁ POLITECHNICZNYCH "ENERGETYK" WAŁBRZYCH (2018 - 2022) - IT TECHNICIAN`}</p>
+                <p className="cyan">{`> BACHELOR OF ENGINEERING IN COMPUTER SCIENCE - CYBERSECURITY AND COMPUTER NETWORKS - WROCŁAWSKA AKADEMIA BIZNESU (2022 - 07.2026)`}</p>
                 <br/>
                 
                 <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> WORK // WORK_EXPERIENCE`}</p>
@@ -219,7 +218,7 @@ function App() {
                 <br />
                 <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> CURRENT_OPERATIONS // JUNIOR_IT_SPEC`}</p>
                 <p className="cyan">{`> INFRA_MANAGEMENT:`} <span style={{color: '#ccc'}}>{`FRONT/BACK-OFFICE SUPPORT`}</span></p>
-                <p className="magenta">{`> MONITORING:`} <span style={{color: '#ccc'}}>{`HYDRA, GRAFANA (CRIT/DOWN ALERTS, KPI)`}</span></p>
+                <p className="magenta">{`> MONITORING:`} <span style={{color: '#ccc'}}>{`HYDRA, GRAFANA (CRIT/DOWN ALERTS, KPI > 95%)`}</span></p>
                 <p className="cyan">{`> VIRTUAL_ENV:`} <span style={{color: '#ccc'}}>{`VMWARE VSPHERE, LENOVO XCLARITY, HA/FAILOVER`}</span></p>
                 <p className="magenta">{`> NETWORK_ADMIN:`} <span style={{color: '#ccc'}}>{`LAN/VLAN, CISCO IE -> SIEMENS SCALANCE, NAT, KEPWARE`}</span></p>
                 <p className="cyan">{`> IAM & BACKUP:`} <span style={{color: '#ccc'}}>{`ACTIVE DIRECTORY, SAP MII, COMMVAULT, TAPE LIBRARIES`}</span></p>
@@ -228,7 +227,7 @@ function App() {
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> TECH_STACK // SKILLS_MODULE`}</p>
                 <p className="cyan">{`> NETWORKING:`} <span style={{color: '#fff'}}>{`CISCO, SIEMENS SCALANCE, VLAN/NAT, PFSENSE`}</span></p>
                 <p className="magenta">{`> SYSTEMS:`} <span style={{color: '#fff'}}>{`WINDOWS SERVER, AD, SAP MII, VMWARE, XCLARITY`}</span></p>
-                <p className="cyan">{`> TOOLS:`} <span style={{color: '#fff'}}>{`GRAFANA, HYDRA, COMMVAULT, HTML/CSS/JS/REACT`}</span></p>
+                <p className="cyan">{`> TOOLS:`} <span style={{color: '#fff'}}>{`DOCKER, GRAFANA, HYDRA, COMMVAULT, HTML/CSS/JS/REACT`}</span></p>
 
                 <br />
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> CORE_PASSIONS // INTERESTS_MODULE`}</p>
@@ -269,7 +268,7 @@ function App() {
         <div className="main-content">
           <section className="hero-info">
             <h1 className="title">DAMIAN<br/>FILIPIAK</h1>
-            <p className="description">JUNIOR IT SPECIALIST</p>
+            <p className="description">B.ENG. IN CYBERSECURITY & NETWORKS</p>
           </section>
 
           <section className="contact-area">

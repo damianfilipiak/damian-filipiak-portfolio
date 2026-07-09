@@ -24,7 +24,6 @@ function useCmdHistory() {
 
   return [history, save];
 }
-// ─── Command definitions ───────────────────────────────────────────────────
 const COMMANDS = {
   help: () => ({
     type: 'list',
@@ -35,9 +34,9 @@ const COMMANDS = {
       { text: 'skills       → tech stack', cls: '' },
       { text: 'experience   → work history', cls: '' },
       { text: 'education    → academic background', cls: '' },
-      { text: 'projects     → my projects', cls: '' },
       { text: 'contact      → how to reach me', cls: '' },
       { text: 'cv           → open CV modal', cls: '' },
+      { text: 'hire me      → hire me', cls: '' },
       { text: 'whoami       → identify current user', cls: '' },
       { text: 'ping         → test connection', cls: '' },
       { text: 'ls           → list directories', cls: '' },
@@ -57,7 +56,7 @@ const COMMANDS = {
       { text: '', cls: '' },
       { text: 'I maintain local production & office IT infrastructure.', cls: '' },
       { text: 'Daily work: LAN/VLAN, VMware, AD, Commvault, Grafana.', cls: '' },
-      { text: 'Goal: Network Engineer / Cybersecurity / DevOps.', cls: '' },
+      { text: 'Goal: Network Engineer / DevOps.', cls: '' },
       { text: '', cls: '' },
       { text: 'Passions: music, snowboarding, web engineering,', cls: 'magenta' },
       { text: '          football, computer games.', cls: 'magenta' },
@@ -106,29 +105,7 @@ const COMMANDS = {
       { text: '─────────────────────────────────────', cls: 'dim' },
       { text: 'B.ENG Computer Science', cls: 'cyan' },
       { text: 'Cybersecurity & Computer Networks', cls: '' },
-      { text: 'Wrocławska Akademia Biznesu · 2022 – present', cls: 'dim' },
-      { text: '', cls: '' },
-      { text: 'IT Technician', cls: 'magenta' },
-      { text: 'ZSP "Energetyk" Wałbrzych · 2018 – 2022', cls: 'dim' },
-    ],
-  }),
-
-  projects: () => ({
-    type: 'list',
-    lines: [
-      { text: '// PROJECTS // INDEXED', cls: 'cyan' },
-      { text: '─────────────────────────────────────', cls: 'dim' },
-      { text: '[01] Portfolio Site', cls: 'cyan' },
-      { text: '     React · Three.js · Vite · Vercel', cls: 'dim' },
-      { text: '     → damianfilipiak.vercel.app', cls: '' },
-      { text: '', cls: '' },
-      { text: '[02] Net Toolkit', cls: 'magenta' },
-      { text: '     React · IP/CIDR · Subnetting · VLAN · GeoIP', cls: 'dim' },
-      { text: '     → github.com/damianfilipiak', cls: '' },
-      { text: '', cls: '' },
-      { text: '[03] Homelab', cls: 'cyan' },
-      { text: '     pfSense · VMware · Docker · k3s · Grafana', cls: 'dim' },
-      { text: '     → private infrastructure project', cls: '' },
+      { text: 'Wrocławska Akademia Biznesu · 2022 – 07.2026', cls: 'dim' },
     ],
   }),
 
@@ -148,7 +125,7 @@ const COMMANDS = {
     type: 'list',
     lines: [
       { text: 'DAMIAN_FILIPIAK', cls: 'cyan' },
-      { text: 'ROLE    → Junior IT Specialist', cls: '' },
+      { text: 'ROLE    → B. Eng Computer Science, Junior IT Specialist', cls: '' },
       { text: 'COMPANY → Forvia S.A.', cls: '' },
       { text: 'LOC     → Wałbrzych, PL', cls: '' },
       { text: 'STATUS  → open to opportunities', cls: 'magenta' },
@@ -177,7 +154,6 @@ const COMMANDS = {
       { text: 'total 6 directories', cls: 'dim' },
       { text: 'drwxr-xr-x  skills/', cls: 'cyan' },
       { text: 'drwxr-xr-x  experience/', cls: 'cyan' },
-      { text: 'drwxr-xr-x  projects/', cls: 'cyan' },
       { text: 'drwxr-xr-x  education/', cls: 'cyan' },
       { text: 'drwxr-xr-x  contact/', cls: 'cyan' },
       { text: 'drwx------  secrets/    [PERMISSION DENIED]', cls: 'magenta' },
@@ -186,17 +162,7 @@ const COMMANDS = {
 
   cv: () => ({ type: 'cv' }),
 
-  // ── Easter eggs ────────────────────────────────────────────────────────
-
   'sudo rm -rf /': () => ({
-    type: 'list',
-    lines: [
-      { text: 'sudo: nice try.', cls: 'magenta' },
-      { text: 'this system is not yours.', cls: 'dim' },
-    ],
-  }),
-
-  'sudo rm -rf': () => ({
     type: 'list',
     lines: [
       { text: 'sudo: nice try.', cls: 'magenta' },
@@ -226,44 +192,8 @@ const COMMANDS = {
 
   matrix: () => ({ type: 'matrix' }),
 
-  snowboard: () => ({
-    type: 'list',
-    lines: [
-      { text: '        o          ', cls: 'cyan' },
-      { text: '       /|\\         ', cls: 'cyan' },
-      { text: '       / \\         ', cls: 'cyan' },
-      { text: '    __/___\\__      ', cls: 'magenta' },
-      { text: '   /____________\\  ', cls: 'magenta' },
-      { text: '', cls: '' },
-      { text: '// shredding since forever', cls: 'dim' },
-    ],
-  }),
-
-  hack: () => ({ type: 'hack' }),
-
   'hire me': () => ({ type: 'hire' }),
   hireme: () => ({ type: 'hire' }),
-
-  'cat secrets': () => ({
-    type: 'list',
-    lines: [
-      { text: 'cat: secrets: Permission denied', cls: 'magenta' },
-      { text: '', cls: '' },
-      { text: '// hint: try the konami code', cls: 'dim' },
-    ],
-  }),
-
-  'cat readme': () => ({
-    type: 'list',
-    lines: [
-      { text: '# DAMIAN_FILIPIAK', cls: 'cyan' },
-      { text: 'Junior IT Specialist turned Web Developer.', cls: '' },
-      { text: 'Built this portfolio with React + Three.js.', cls: '' },
-      { text: 'Deployed on Vercel. Security rating: A.', cls: '' },
-      { text: '', cls: '' },
-      { text: '> type `help` for available commands', cls: 'dim' },
-    ],
-  }),
 
   exit: () => ({ type: 'exit' }),
   quit: () => ({ type: 'exit' }),
@@ -274,7 +204,6 @@ const COMMANDS = {
   '': () => ({ type: 'empty' }),
 };
 
-// ─── Matrix rain effect ────────────────────────────────────────────────────
 function MatrixRain({ onDone }) {
   const canvasRef = useRef(null);
   useEffect(() => {
@@ -304,69 +233,123 @@ function MatrixRain({ onDone }) {
   return <canvas ref={canvasRef} style={{ width: '100%', height: '160px', display: 'block' }} />;
 }
 
-// ─── Hack animation ────────────────────────────────────────────────────────
-const HACK_LINES = [
-  'Initializing breach sequence...',
-  'Scanning target: damianfilipiak.vercel.app',
-  'Port scan: 22 CLOSED · 80 OPEN · 443 OPEN',
-  'Attempting exploit CVE-2024-XXXX...',
-  'Access DENIED. Security rating: A',
-  'Trying alternate vector...',
-  'FIREWALL DETECTED. Aborting.',
-  '> You cannot hack what you own.',
-  '> Nice try though.',
-];
+function HireProtocol({ onDone }) {
+  const [step, setStep] = useState('email');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState('');
+  const inputRef = useRef(null);
 
-function HackAnim({ onDone }) {
-  const [lines, setLines] = useState([]);
   useEffect(() => {
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i >= HACK_LINES.length) { clearInterval(interval); setTimeout(onDone, 600); return; }
-      setLines(prev => [...prev, HACK_LINES[i]]);
-      i++;
-    }, 320);
-    return () => clearInterval(interval);
-  }, [onDone]);
-  return (
-    <div>
-      {lines.map((l, i) => (
-        <div key={i} style={{ color: i >= 7 ? '#ff4466' : i >= 4 ? '#ffaa00' : '#00e5ff', fontSize: 12, lineHeight: 1.8 }}>{l}</div>
-      ))}
-    </div>
-  );
-}
-
-// ─── Hire animation ────────────────────────────────────────────────────────
-function HireAnim({ onDone }) {
-  const [step, setStep] = useState(0);
-  const steps = [
-    { text: 'INITIATING HIRE_SEQUENCE...', cls: 'cyan' },
-    { text: 'Checking qualifications... ✓', cls: '' },
-    { text: 'Verifying portfolio... ✓', cls: '' },
-    { text: 'Running background check... ✓', cls: '' },
-    { text: 'Security clearance: A grade ✓', cls: '' },
-    { text: '─────────────────────────────────────', cls: 'dim' },
-    { text: '✓ CANDIDATE APPROVED', cls: 'cyan' },
-    { text: '', cls: '' },
-    { text: 'damian.filipiak02@gmail.com', cls: 'magenta' },
-    { text: '+48 780 127 927', cls: 'magenta' },
-  ];
-  useEffect(() => {
-    if (step >= steps.length) { setTimeout(onDone, 400); return; }
-    const t = setTimeout(() => setStep(s => s + 1), 280);
-    return () => clearTimeout(t);
+    inputRef.current?.focus();
   }, [step]);
+
+  const handleKeyDown = async (e) => {
+    if (e.key === 'Escape') {
+      onDone();
+      return;
+    }
+    
+    if (e.key === 'Enter') {
+      if (step === 'email') {
+        if (!email.includes('@')) {
+          setStatus('Invalid email format. Try again.');
+          return;
+        }
+        setStatus('');
+        setStep('message');
+      } else if (step === 'message') {
+        if (message.trim().length < 2) return;
+        setStep('sending');
+        
+        try {
+          const res = await fetch('https://formspree.io/f/xeelqkrz', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+              email: email, 
+              message: message,
+              _gotcha: '',
+              _subject: 'Wiadomość z Terminala (Hire Me)' 
+            })
+          });
+          
+          if (res.ok) {
+            setStatus('Transmission successful. I will contact you soon.');
+          } else {
+            setStatus('Transmission failed. Server rejected the request.');
+          }
+        } catch (error) {
+          setStatus('Network error. Transmission failed.');
+        }
+        
+        setStep('done');
+        setTimeout(() => onDone(), 3000);
+      }
+    }
+  };
+
   return (
-    <div>
-      {steps.slice(0, step).map((s, i) => (
-        <div key={i} className={`t-${s.cls || 'default'}`} style={{ fontSize: 12, lineHeight: 1.9 }}>{s.text}</div>
-      ))}
+    <div className="term-hire-module">
+      <div className="term-line" style={{ color: '#ff00f7' }}>// INITIATING SECURE HIRE PROTOCOL...</div>
+      <div className="term-line dim">Press ESC to abort.</div>
+      <br />
+    
+      {step !== 'email' && (
+        <div className="term-inputline">
+          <span className="term-prompt" style={{ color: '#00e5ff' }}>recruiter_email:~$</span>
+          <span className="term-inputecho">{email}</span>
+        </div>
+      )}
+
+      {step === 'email' && (
+        <div className="term-inputline">
+          <span className="term-prompt" style={{ color: '#00e5ff' }}>enter_your_email:~$</span>
+          <input
+            ref={inputRef}
+            className="term-input"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+            onKeyDown={handleKeyDown}
+            autoComplete="off"
+            spellCheck={false}
+          />
+          <span className="term-cursor" />
+        </div>
+      )}
+
+      {(step === 'sending' || step === 'done') && (
+        <div className="term-inputline">
+          <span className="term-prompt" style={{ color: '#00e5ff' }}>message_content:~$</span>
+          <span className="term-inputecho">{message}</span>
+        </div>
+      )}
+
+      {step === 'message' && (
+        <div className="term-inputline">
+          <span className="term-prompt" style={{ color: '#00e5ff' }}>message_content:~$</span>
+          <input
+            ref={inputRef}
+            className="term-input"
+            value={message}
+            onChange={e => setMessage(e.target.value)}
+            onKeyDown={handleKeyDown}
+            autoComplete="off"
+            spellCheck={false}
+          />
+          <span className="term-cursor" />
+        </div>
+      )}
+
+      {status && <div className="term-line" style={{ color: step === 'done' ? '#00e5ff' : '#ff4466' }}>{status}</div>}
+      {step === 'sending' && <div className="term-line" style={{ color: '#ff00f7' }}>Encrypting and routing package...</div>}
     </div>
   );
 }
 
-// ─── Main Terminal component ───────────────────────────────────────────────
 export default function Terminal({ onClose, onOpenCV }) {
   const [history, setHistory] = useState([
     { type: 'output', lines: [
@@ -382,7 +365,7 @@ export default function Terminal({ onClose, onOpenCV }) {
   const inputRef = useRef(null);
   const bottomRef = useRef(null);
 
-  // Konami code
+
   const konamiRef = useRef([]);
   const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
 
@@ -429,7 +412,6 @@ export default function Terminal({ onClose, onOpenCV }) {
     setCmdHistory(prev => cmd ? [raw, ...prev].slice(0, 50) : prev);
     setCmdIndex(-1);
 
-    // Add input line to history
     setHistory(prev => [...prev, { type: 'input', text: raw || ' ' }]);
 
     if (!cmd) return;
@@ -496,7 +478,6 @@ export default function Terminal({ onClose, onOpenCV }) {
       setHistory([]);
     } else if (e.key === 'Tab') {
       e.preventDefault();
-      // Tab autocomplete
       const partial = input.toLowerCase();
       const match = Object.keys(COMMANDS).find(k => k.startsWith(partial) && k !== partial && k !== '');
       if (match) setInput(match);
@@ -547,8 +528,7 @@ export default function Terminal({ onClose, onOpenCV }) {
 
           {/* Special animations */}
           {specialOutput === 'matrix' && <MatrixRain onDone={specialDone} />}
-          {specialOutput === 'hack' && <HackAnim onDone={specialDone} />}
-          {specialOutput === 'hire' && <HireAnim onDone={specialDone} />}
+          {specialOutput === 'hire' && <HireProtocol onDone={specialDone} />}
 
           {/* Input line */}
           {!specialOutput && (
