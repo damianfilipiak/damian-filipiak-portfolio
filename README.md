@@ -24,7 +24,7 @@ docker run -d -p 8080:80 --name damian-portfolio damianfilipiak_portfolio
 ```
 ### Option B: Download image from Docker Hub
 ```bash
-docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfoslio:latest
+docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfolio:latest
 ```
 The application will be available at: http://localhost:8080
 
