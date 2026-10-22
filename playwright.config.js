@@ -9,13 +9,13 @@ export default defineConfig({
   reporter: 'list',
   use: {
     ...devices['Desktop Chrome'],
-    baseURL: 'http://127.0.0.1:4173',
+    baseURL: process.env.BASE_URL ?? 'http://127.0.0.1:4173',
     launchOptions: {
       args: ['--use-gl=angle', '--use-angle=swiftshader'],
     },
     trace: 'retain-on-failure',
   },
-  webServer: {
+  webServer: process.env.BASE_URL ? undefined : {
     command: 'npm run preview -- --host 127.0.0.1 --port 4173 --strictPort',
     url: 'http://127.0.0.1:4173',
     reuseExistingServer: !process.env.CI,
