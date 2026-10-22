@@ -13,7 +13,7 @@ Welcome to the repository of my interactive portfolio! Beyond the live site, thi
 * **Containerization**: Docker (multi-stage build minimizing image size)
 * **Web Server**: Nginx (Alpine version)
 * **Infrastructure (IaC)**: Terraform + AWS (Work in progress)
-* **CI/CD**: GitHub Actions (Work in progress)
+* **CI/CD**: GitHub Actions build and browser checks, and Vercel deployments
 
 ## How to run the project locally
 
@@ -28,6 +28,11 @@ docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfolio:latest
 ```
 The application will be available at: http://localhost:8080
 
+## Updates and deployment checks
+
+GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the homepage and 3D model load, the page has no runtime errors, and both CV PDFs are available.
+
+When the repository is connected to Vercel, pull requests can also receive Preview Deployments for manually checking the site before a change is merged. Production deployment after merging depends on the Vercel project's production branch settings. Review the preview URL and passing workflow check before merging.
 
 ## 👨‍💻 About the Author
 

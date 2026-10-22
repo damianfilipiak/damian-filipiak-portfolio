@@ -128,9 +128,9 @@ function App() {
 
   const isMobile = width < 800;
 
-  const currentPdfUrl = cvLang === 'EN' 
-    ? "/IT_Eng_Damian_Filipiak.pdf" 
-    : "/Inz_IT_Damian_Filipiak.pdf";
+  const currentPdfUrl = cvLang === 'EN'
+    ? "/ITEng_Damian_Filipiak.pdf"
+    : "/InzIT_Damian_Filipiak.pdf";
 
   const handlePrint = () => {
     const printWindow = window.open(currentPdfUrl, '_blank');
