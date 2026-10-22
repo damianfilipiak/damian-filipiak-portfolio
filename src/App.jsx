@@ -155,7 +155,7 @@ function App() {
               onClick={() => setShowSnow(true)}
               style={{ cursor: 'crosshair' }}
             >
-            CORE_v2.0 // DAMIAN_FILIPIAK
+            CORE_v3.0 // DAMIAN_FILIPIAK
           </div>
           <div className="nav-group">
             <button onClick={() => setShowTerminal(!showTerminal)} className={showTerminal ? 'active' : ''}>

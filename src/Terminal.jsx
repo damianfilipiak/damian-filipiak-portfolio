@@ -192,7 +192,7 @@ const COMMANDS = {
 
   uname: () => ({
     type: 'list',
-    lines: [{ text: 'CORE_v2.0 // DAMIAN_FILIPIAK_OS // x86_64', cls: 'cyan' }],
+    lines: [{ text: 'CORE_v3.0 // DAMIAN_FILIPIAK_OS // x86_64', cls: 'cyan' }],
   }),
 
   matrix: () => ({ type: 'matrix' }),
@@ -358,7 +358,7 @@ function HireProtocol({ onDone }) {
 export default function Terminal({ onClose, onOpenCV }) {
   const [history, setHistory] = useState([
     { type: 'output', lines: [
-      { text: 'CORE_v2.0 // DAMIAN_FILIPIAK_TERMINAL', cls: 'cyan' },
+      { text: 'CORE_v3.0 // DAMIAN_FILIPIAK_TERMINAL', cls: 'cyan' },
       { text: 'Type `help` for available commands.', cls: 'dim' },
       { text: '─────────────────────────────────────', cls: 'dim' },
     ]},
