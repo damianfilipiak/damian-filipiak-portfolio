@@ -9,6 +9,11 @@ test('homepage loads the 3D model and renders without runtime errors', async ({ 
   );
 
   await page.goto('/');
+  await expect(page).toHaveTitle('Damian Filipiak | IT Engineer · Networks & Cybersecurity');
+  await expect(page.locator('meta[property="og:title"]')).toHaveAttribute(
+    'content',
+    'Damian Filipiak | IT Engineer · Networks & Cybersecurity'
+  );
   await expect(page.locator('h1.title')).toContainText('DAMIAN');
   await expect(page.locator('.canvas-container canvas')).toBeVisible();
   expect((await modelResponsePromise).ok()).toBeTruthy();
