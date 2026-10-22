@@ -4,9 +4,22 @@ updates:
     directory: /
     schedule:
       interval: weekly
+    open-pull-requests-limit: 3
     labels:
       - dependencies
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
+      three:
+        patterns:
+          - three
+          - "@react-three/*"
+      dev-tools:
+        dependency-type: development
+        update-types:
+          - minor
+          - patch
       react:
         patterns:
           - react
