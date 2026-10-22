@@ -13,7 +13,7 @@ Welcome to the repository of my interactive portfolio! Beyond the live site, thi
 * **Containerization**: Docker (multi-stage build minimizing image size)
 * **Web Server**: Nginx (Alpine version)
 * **Infrastructure (IaC)**: Terraform + AWS (Work in progress)
-* **CI/CD**: GitHub Actions build and browser checks, and Vercel deployments
+* **CI/CD**: GitHub Actions build and browser checks, Dependabot weekly updates, and Vercel deployments
 
 ## How to run the project locally
 
@@ -30,7 +30,9 @@ The application will be available at: http://localhost:8080
 
 ## Updates and deployment checks
 
-GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the homepage and 3D model load, the page has no runtime errors, and both CV PDFs are available.
+GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available.
+
+Dependabot checks npm packages and GitHub Actions weekly and opens pull requests with available updates. Updates are not merged automatically.
 
 When the repository is connected to Vercel, pull requests can also receive Preview Deployments for manually checking the site before a change is merged. Production deployment after merging depends on the Vercel project's production branch settings. Review the preview URL and passing workflow check before merging.
 
