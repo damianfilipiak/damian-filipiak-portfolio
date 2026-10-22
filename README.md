@@ -30,7 +30,7 @@ The application will be available at: http://localhost:8080
 
 ## Updates and deployment checks
 
-GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the homepage and 3D model load, the page has no runtime errors, and both CV PDFs are available.
+GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available.
 
 Dependabot checks npm packages and GitHub Actions weekly and opens pull requests with available updates. Updates are not merged automatically.
 
