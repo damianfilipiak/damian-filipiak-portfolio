@@ -128,9 +128,9 @@ function App() {
 
   const isMobile = width < 800;
 
-  const currentPdfUrl = cvLang === 'EN' 
-    ? "/IT_Eng_Damian_Filipiak.pdf" 
-    : "/Inz_IT_Damian_Filipiak.pdf";
+  const currentPdfUrl = cvLang === 'EN'
+    ? "/ITEng_Damian_Filipiak.pdf"
+    : "/InzIT_Damian_Filipiak.pdf";
 
   const handlePrint = () => {
     const printWindow = window.open(currentPdfUrl, '_blank');
@@ -208,7 +208,13 @@ function App() {
                 <br />
 
                 <p style={{color: '#fff', fontWeight: 'bold'}}>{`>> USER_SCHOOL // EDUCATION`}</p>
-                <p className="cyan">{`> BACHELOR OF ENGINEERING IN COMPUTER SCIENCE - CYBERSECURITY AND COMPUTER NETWORKS - WROCŁAWSKA AKADEMIA BIZNESU (2022 - 07.2026)`}</p>
+                <p className="cyan">{`> MASTER’S STUDIES, FIELD OF STUDY: COMPUTER SCIENCE`}</p>
+                <p>{`> WSB MERITO POZNAŃ | 10/2026 - PRESENT`}</p>
+                <p className="magenta">{`> SPECIALIZATION: CLOUD SOLUTIONS OUTSOURCING`}</p>
+                <br/>
+                <p className="cyan">{`> ENGINEERING STUDIES (BACHELOR’S), FIELD OF STUDY: COMPUTER SCIENCE`}</p>
+                <p>{`> AKADEMIA TECHNICZNO-ARTYSTYCZNA, WYDZIAŁ WROCŁAWSKA AKADEMIA BIZNESU | 10/2022 - 07/2026`}</p>
+                <p className="magenta">{`> SPECIALIZATION: CYBERSECURITY AND COMPUTER NETWORKS`}</p>
                 <br/>
                 
                 <p className="blink" style={{color: '#fff', fontWeight: 'bold'}}>{`>> WORK // WORK_EXPERIENCE`}</p>
@@ -268,7 +274,7 @@ function App() {
         <div className="main-content">
           <section className="hero-info">
             <h1 className="title">DAMIAN<br/>FILIPIAK</h1>
-            <p className="description">B.ENG. IN CYBERSECURITY & NETWORKS</p>
+            <p className="description">IT ENGINEER | CYBERSECURITY & NETWORKS</p>
           </section>
 
           <section className="contact-area">
