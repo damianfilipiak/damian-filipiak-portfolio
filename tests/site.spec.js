@@ -36,3 +36,25 @@ test('both CV languages point to available PDF files', async ({ page, request })
   expect(polishCv.ok()).toBeTruthy();
   expect(polishCv.headers()['content-type']).toContain('application/pdf');
 });
+
+test('education details are consistent in the terminal and internal logs', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.locator('.description')).toHaveText('IT ENGINEER | CYBERSECURITY & NETWORKS');
+
+  await page.getByRole('button', { name: '[ TECH_SPEC ]' }).click();
+  const internalLogs = page.locator('.bio-terminal').first();
+  await expect(internalLogs).toContainText('MASTER’S STUDIES, FIELD OF STUDY: COMPUTER SCIENCE');
+  await expect(internalLogs).toContainText('CLOUD SOLUTIONS OUTSOURCING');
+  await expect(internalLogs).toContainText('ENGINEERING STUDIES (BACHELOR’S), FIELD OF STUDY: COMPUTER SCIENCE');
+  await expect(internalLogs).toContainText('CYBERSECURITY AND COMPUTER NETWORKS');
+
+  await page.getByRole('button', { name: '[ CLOSE ]' }).click();
+  await page.getByRole('button', { name: '[ CONSOLE ]' }).click();
+  await page.getByRole('textbox', { name: 'Terminal input' }).fill('education');
+  await page.getByRole('textbox', { name: 'Terminal input' }).press('Enter');
+  const terminalOutput = page.locator('.term-output');
+  await expect(terminalOutput).toContainText('Master’s Studies · Computer Science');
+  await expect(terminalOutput).toContainText('Cloud Solutions Outsourcing');
+  await expect(terminalOutput).toContainText('Bachelor of Engineering · Computer Science');
+  await expect(terminalOutput).toContainText('Cybersecurity & Computer Networks');
+});

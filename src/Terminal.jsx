@@ -103,9 +103,14 @@ const COMMANDS = {
     lines: [
       { text: '// EDUCATION_MODULE', cls: 'cyan' },
       { text: '─────────────────────────────────────', cls: 'dim' },
-      { text: 'B.ENG Computer Science', cls: 'cyan' },
+      { text: 'Master’s Studies · Computer Science', cls: 'cyan' },
+      { text: 'Cloud Solutions Outsourcing', cls: '' },
+      { text: 'WSB Merito Poznań · 10.2026 – present', cls: 'dim' },
+      { text: '', cls: '' },
+      { text: 'Bachelor of Engineering · Computer Science', cls: 'cyan' },
       { text: 'Cybersecurity & Computer Networks', cls: '' },
-      { text: 'Wrocławska Akademia Biznesu · 2022 – 07.2026', cls: 'dim' },
+      { text: 'Akademia Techniczno-Artystyczna, Wydział Wrocławska Akademia Biznesu', cls: 'dim' },
+      { text: '10.2022 – 07.2026', cls: 'dim' },
     ],
   }),
 
