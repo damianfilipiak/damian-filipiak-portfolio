@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@react-three/drei": "^10.7.9",
-    "@react-three/fiber": "^9.5.0",
+    "@react-three/fiber": "^9.8.2",
     "@vercel/analytics": "^2.0.1",
     "d3-scale": "^4.0.2",
     "react": "^19.2.0",
