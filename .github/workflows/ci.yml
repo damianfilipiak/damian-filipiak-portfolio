@@ -35,24 +35,8 @@ jobs:
       - name: Build production site
         run: npm run build
 
-      - name: Get Playwright version
-        id: pw
-        run: echo "version=$(npx playwright --version)" >> "$GITHUB_OUTPUT"
-
-      - name: Cache Playwright browser
-        id: pw-cache
-        uses: actions/cache@v6
-        with:
-          path: ~/.cache/ms-playwright
-          key: pw-${{ runner.os }}-${{ steps.pw.outputs.version }}
-
       - name: Install Playwright browser
-        if: steps.pw-cache.outputs.cache-hit != 'true'
-        run: npx playwright install --with-deps chromium
-
-      - name: Install Playwright system deps
-        if: steps.pw-cache.outputs.cache-hit == 'true'
-        run: npx playwright install-deps chromium
+        run: npx playwright install chromium
 
       - name: Test production site in browser
         run: npm run test:e2e
