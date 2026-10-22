@@ -10,27 +10,25 @@ Welcome to the repository of my interactive portfolio! Beyond the live site, thi
 ## Architecture & Technologies
 
 * **Frontend**: React + Vite
-* **Containerization**: Docker (multi-stage build minimizing image size)
-* **Web Server**: Nginx (Alpine version)
+* **Containerization**: Docker (multi-stage build, Node.js 24)
+* **Web Server**: Nginx unprivileged (Alpine)
 * **Infrastructure (IaC)**: Terraform + AWS (Work in progress)
 * **CI/CD**: GitHub Actions build and browser checks, Dependabot weekly updates, and Vercel deployments
 
 ## How to run the project locally
 
-### Option A: Build from source
+Build and run the production container:
 ```bash
 docker build -t damianfilipiak_portfolio .
-docker run -d -p 8080:80 --name damian-portfolio damianfilipiak_portfolio
+docker run --rm -p 8080:8080 --name damian-portfolio damianfilipiak_portfolio
 ```
-### Option B: Download image from Docker Hub
-```bash
-docker run -d -p 8080:80 --name damian-portfolio xxxblacksanta/portfolio:latest
-```
-The application will be available at: http://localhost:8080
+The application will be available at: http://localhost:8080. The container uses the same Node.js major version as CI and Vercel, installs dependencies from the lockfile, and serves the built site with an unprivileged Nginx user. Security headers are configured in `nginx.conf` to match `vercel.json`.
+
+This repository does not automatically publish updated images to Docker Hub; build from source to run the current version.
 
 ## Updates and deployment checks
 
-GitHub Actions runs a production build and Playwright browser checks for pushes to any branch and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available.
+GitHub Actions runs the required production build and Playwright browser checks on pushes to `main` and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available. A separate Docker workflow builds and tests the container only when Docker-related files or dependency manifests change, and can also be started manually.
 
 Dependabot checks npm packages and GitHub Actions weekly and opens pull requests with available updates. Updates are not merged automatically.
 

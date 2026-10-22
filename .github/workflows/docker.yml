@@ -1,0 +1,99 @@
+name: Verify Docker image
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .dockerignore
+      - .nvmrc
+      - Dockerfile
+      - nginx.conf
+      - package.json
+      - package-lock.json
+      - .github/workflows/docker.yml
+  push:
+    branches:
+      - main
+    paths:
+      - .dockerignore
+      - .nvmrc
+      - Dockerfile
+      - nginx.conf
+      - package.json
+      - package-lock.json
+      - .github/workflows/docker.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: docker-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build Docker image
+        run: docker build --tag portfolio:test .
+
+      - name: Run Docker container
+        run: docker run --detach --name portfolio-test --publish 127.0.0.1:8080:8080 portfolio:test
+
+      - name: Wait for Docker site
+        run: |
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8080/ >/dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          docker logs portfolio-test
+          exit 1
+
+      - name: Check Docker security headers
+        run: |
+          headers="$(curl --silent --head http://127.0.0.1:8080/)"
+          echo "$headers" | grep -qi '^X-Content-Type-Options: nosniff'
+          echo "$headers" | grep -qi '^X-Frame-Options: SAMEORIGIN'
+          echo "$headers" | grep -qi '^Referrer-Policy: strict-origin-when-cross-origin'
+          echo "$headers" | grep -qi '^Permissions-Policy: camera=(), microphone=(), geolocation=()'
+          echo "$headers" | grep -qi '^Strict-Transport-Security: max-age=63072000; includeSubDomains; preload'
+
+      - name: Install Playwright browser
+        run: npx playwright install chromium
+
+      - name: Test Docker site in browser
+        env:
+          BASE_URL: http://127.0.0.1:8080
+        run: npm run test:e2e
+
+      - name: Upload browser test results
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: docker-playwright-test-results
+          path: test-results/
+          if-no-files-found: ignore
+
+      - name: Stop Docker container
+        if: always()
+        run: |
+          if docker container inspect portfolio-test >/dev/null 2>&1; then
+            docker rm --force portfolio-test
+          fi
