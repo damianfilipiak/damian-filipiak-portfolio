@@ -28,7 +28,7 @@ This repository does not automatically publish updated images to Docker Hub; bui
 
 ## Updates and deployment checks
 
-GitHub Actions builds the Docker image and runs Playwright browser checks against the container on pushes to `main` and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available.
+GitHub Actions runs the required production build and Playwright browser checks on pushes to `main` and pull requests targeting `main`. The browser checks verify that the 3D model loads, the page has no runtime errors, and both CV PDFs are available. A separate Docker workflow builds and tests the container only when Docker-related files or dependency manifests change, and can also be started manually.
 
 Dependabot checks npm packages and GitHub Actions weekly and opens pull requests with available updates. Updates are not merged automatically.
 
